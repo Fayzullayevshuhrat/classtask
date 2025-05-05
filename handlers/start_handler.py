@@ -2,13 +2,16 @@ from aiogram import Router
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import CommandStart
-
 from states.registration_state import Registration
 
 router = Router()
 
 @router.message(CommandStart())
 async def command_start_handler(message: Message, state: FSMContext) -> None:
+    args = message.text.split()
+    referal = args[1] if len(args) > 1 else None
+
+    await state.update_data(referal=referal)
     await message.answer(f"Hello, {message.from_user.full_name}!")
     await state.set_state(Registration.name)
     await message.answer("Ismingizni kiriting")

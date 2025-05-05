@@ -1,7 +1,7 @@
-from aiogram.fsm.context import FSMContext
-from aiogram.fsm.state import State, StatesGroup
+from aiogram.fsm.state import StatesGroup, State
 
 class Registration(StatesGroup):
     name = State()
     age = State()
     phone = State()
+    referal = State()
