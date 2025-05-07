@@ -9,14 +9,15 @@ from aiogram.enums import ParseMode
 from config import TOKEN
 from handlers.start_handler import router as start_router
 from handlers.registration_handler import router as registration_router
+from handlers.padpiska import router as subscription_router
 
 async def main() -> None:
-
     bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
-
-
     dp = Dispatcher()
+
     dp.include_router(start_router)
+    dp.include_router(subscription_router)
+
     dp.include_router(registration_router)
 
 
